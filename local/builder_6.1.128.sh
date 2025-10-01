@@ -30,8 +30,8 @@ read -p "是否启用三星SSG IO调度器？(y/n，默认：n): " APPLY_SSG
 APPLY_SSG=${APPLY_SSG:-n}
 read -p "是否启用Re-Kernel？(y/n，默认：n): " APPLY_REKERNEL
 APPLY_REKERNEL=${APPLY_REKERNEL:-n}
-read -p "是否启用内核级基带保护？(y/n，默认：n): " APPLY_BBG
-APPLY_BBG=${APPLY_BBG:-n}
+read -p "是否启用内核级基带保护？(y/n，默认：y): " APPLY_BBG
+APPLY_BBG=${APPLY_BBG:-y}
 read -p "是否安装风驰内核驱动（未完成）？(y/n，默认：n): " APPLY_SCX
 APPLY_SCX=${APPLY_SCX:-n}
 
@@ -438,7 +438,7 @@ fi
 
 # ===== 生成 ZIP 文件名 =====
 MANIFEST_BASENAME=${MANIFEST}
-ZIP_NAME="Anykernel3-${MANIFEST_BASENAME}"
+ZIP_NAME="Anykernel3-6.1.128"
 
 if [[ "$APPLY_LZ4KD" == "y" || "$USE_PATCH_LINUX" == "y" ]]; then
   ZIP_NAME="${ZIP_NAME}-lz4kd-kpm-vfs"
@@ -448,7 +448,7 @@ elif [[ "$USE_PATCH_LINUX" == "y" || "$USE_PATCH_LINUX" == "Y" ]]; then
   ZIP_NAME="${ZIP_NAME}-kpm-vfs"
 fi
 
-ZIP_NAME="${ZIP_NAME}-v$(date +%Y%m%d).zip"
+ZIP_NAME="${ZIP_NAME}.zip"
 
 # ===== 打包 ZIP 文件，包括 zram.zip（如果存在） =====
 echo ">>> 打包文件: $ZIP_NAME"
